@@ -1,4 +1,4 @@
-# API Tests
+# Cin7 API Client for NodeJS
 
 A simple NodeJS package to make calls to the
   [Cin7 API](https://api.cin7.com/API/Help)
