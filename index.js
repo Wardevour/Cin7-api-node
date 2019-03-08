@@ -6,7 +6,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 // prepare needed data for making requests
-const API_KEY = Buffer.from(process.env.API_KEY).toString("base64");
+const CIN7_API_KEY = Buffer.from(process.env.CIN7_API_KEY).toString("base64");
 const baseUrl = "https://api.cin7.com/api/v1";
 const products = require("./lib/products");
 
@@ -16,7 +16,7 @@ module.exports = class Cin7 {
         this.options = {
             "baseUrl": baseUrl,
             "headers": {
-                "Authorization": "Basic " + API_KEY
+                "Authorization": "Basic " + CIN7_API_KEY
             }
         };
 

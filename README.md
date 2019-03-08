@@ -6,7 +6,7 @@ A simple NodeJS package to make calls to the
 ### Prerequisites
 
 You will need to install [NodeJS](https://nodejs.org), which will come with
-  npm. You must also sign up with Cin7 to get an API_KEY. Your API_KEY is the
+  npm. You must also sign up with Cin7 to get an CIN7_API_KEY. Your CIN7_API_KEY is the
   username and password separated by a colon. You will also need git installed.
 
 ```
@@ -35,18 +35,18 @@ cd Cin7-api-node
 npm install
 ```
 
-To run the tests you'll need to set the API_KEY with dotenv. To do this,
-   you must make a `.env` file and define your API_KEY inside. Here
+To run the tests you'll need to set the CIN7_API_KEY with dotenv. To do this,
+   you must make a `.env` file and define your CIN7_API_KEY inside. Here
   is an example in bash:
 
 ```bash
 touch .env
-echo "API_KEY=UserName:Password" >> .env
+echo "CIN7_API_KEY=UserName:Password" >> .env
 npm test
 ```
 
-*NOTE:* You should never set the API_KEY like this in production. Your API_KEY
-  could be logged from the terminal. Also, the environment variable should be
+*NOTE:* You should never set the CIN7_API_KEY like this in production. Your key
+  could be logged from the terminal. Also, environment variables should be
   set with the system, not with dotenv. When deploying to production, you can
   disable dotenv by setting the environment variable NODE_ENV="production"
 
