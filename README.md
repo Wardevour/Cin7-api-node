@@ -1,6 +1,6 @@
 # API Tests
 
-A simple NodeJS package to make test calls to the
+A simple NodeJS package to make calls to the
   [Cin7 API](https://api.cin7.com/API/Help)
 
 ### Prerequisites
@@ -44,20 +44,25 @@ touch .env
 echo "API_KEY=UserName:Password" >> .env
 ```
 
-*NOTE:* You should never do it like this in production. Your API_KEY will be
+*NOTE:* You should never do it like this in production. Your API_KEY could be
   logged from the terminal. Also, the environment variable should be set with
-  the system, not with dotenv. This repo is for development purposes only
+  the system, not with dotenv. When deploying to production, you can disable
+  dotenv by setting the environment variable NODE_ENV="production"
 
 ## Authors
 
-* **Kenneth Brockert** - *Initial work* - [Wardevour](https://github.com/Wardevour)
+* **Kenneth Brockert** - *Initial work* -
+  [Wardevour](https://github.com/Wardevour)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+  file for details
 
 ## Acknowledgments
 
 * NodeJS
 * request
 * dotenv
+* mocha
+* chai
