@@ -31,23 +31,24 @@ Next, you'll want to install the required dependencies. Run the `npm install`
   command from within the repository, like so:
 
 ```bash
-cd api-tests
+cd Cin7-api-node
 npm install
 ```
 
-To run the code you'll need to set the API_KEY environment variable. To do this
-  with dotenv you must make a `.env` file and define your API_KEY inside. Here
+To run the tests you'll need to set the API_KEY with dotenv. To do this,
+   you must make a `.env` file and define your API_KEY inside. Here
   is an example in bash:
 
 ```bash
 touch .env
 echo "API_KEY=UserName:Password" >> .env
+npm test
 ```
 
-*NOTE:* You should never do it like this in production. Your API_KEY could be
-  logged from the terminal. Also, the environment variable should be set with
-  the system, not with dotenv. When deploying to production, you can disable
-  dotenv by setting the environment variable NODE_ENV="production"
+*NOTE:* You should never set the API_KEY like this in production. Your API_KEY
+  could be logged from the terminal. Also, the environment variable should be
+  set with the system, not with dotenv. When deploying to production, you can
+  disable dotenv by setting the environment variable NODE_ENV="production"
 
 ## Authors
 
