@@ -1,5 +1,5 @@
 {
-  "name": "api-tests",
+  "name": "cin7-api-node",
   "version": "1.0.0",
   "description": "Test the cin7 api with Request",
   "main": "index.js",
