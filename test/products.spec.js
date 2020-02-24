@@ -80,14 +80,12 @@ describe('Cin7.products', function() {
                 }).then((data) => {
                     rows = rows.concat(data);
 
-                    options.page++;
-                    assert.isAbove(options.page, 1);
-
                     // Calls are limited to 1 per second, 60 per minute
                     //   and 5000 per day. If you exceed this rate limit you
                     //   will receive a HTTP 429 (Too Many Requests) response.
                     return sleep(1000);
                 }).then(() => {
+                    options.page++;
                     return cin7.products.get(options);
                 }).then((response) => {
                     return response.json();
