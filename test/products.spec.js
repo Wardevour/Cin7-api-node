@@ -1,45 +1,46 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
-const assert = require("chai").assert;
-const sleep = require("../lib/helpers").sleep;
-const Cin7 = require("../index");
+const fs = require('fs');
+const path = require('path');
+const assert = require('chai').assert;
+const sleep = require('../lib/helpers').sleep;
+const Cin7 = require('../index');
 
 var cin7 = null;
 
 
-describe("Cin7.products", function() {
+describe('Cin7.products', function() {
     before(function() {
         cin7 = new Cin7();
     });
 
-    describe("#get()", function() {
-        context("when using default options", function() {
-            it("should create output/products.json", function(done) {
+    describe('#get()', function() {
+        context('when using default options', function() {
+            it('should create output/products.json', function(done) {
                 this.timeout(5000);
 
                 cin7.products.get().then((response) => {
-                    // make a file system agnostic file name
-                    var fileName = "output" + path.sep + "products.json";
+                    return response.text();
+                }).then((text) => {
+                  // make a file system agnostic file name
+                  var fileName = 'output' + path.sep + 'products.json';
 
-                    // this throws an error if the path doesn't exist
-                    //   or the file couldn't be created
-                    fs.writeFileSync(fileName, response.body, "utf-8");
+                  // this throws an error if the path doesn't exist
+                  //   or the file couldn't be created
+                  fs.writeFileSync(fileName, text, 'utf-8');
 
-                    done();
+                  done();
                 }).catch(done);
             });
 
-            it("should create output/products.csv", function(done) {
+            it('should create output/products.csv', function(done) {
                 this.timeout(5000);
 
                 cin7.products.get().then((response) => {
-                    // parse the json encoded string into an object
-                    var data = JSON.parse(response.body);
-
+                    return response.json();
+                }).then((data) => {
                     var rows = [];
-                    rows[0] = Object.keys(data[0]).join(",");
+                    rows[0] = Object.keys(data[0]).join(',');
 
                     for (let i = 1; i < data.length; i++) {
                         let values = Object.values(data[i]);
@@ -49,37 +50,37 @@ describe("Cin7.products", function() {
                             return "'" + val + "'";
                         });
 
-                        rows[i] = values.join(",");
+                        rows[i] = values.join(',');
                     }
 
                     // write the csv file
-                    var fileName = "output" + path.sep + "products.csv";
-                    fs.writeFileSync(fileName, rows.join("\n"), "utf-8");
+                    var fileName = 'output' + path.sep + 'products.csv';
+                    fs.writeFileSync(fileName, rows.join('\n'), 'utf-8');
 
                     done();
                 }).catch(done);
             });
         });
 
-        context("when using page options", function() {
-            it("should get two pages and concat them", function(done) {
+        context('when using page options', function() {
+            it('should get two pages and concat them', function(done) {
                 this.timeout(6000);
 
                 var rows = [];
 
                 var options = {
-                    "fields": ["id"],
-                    "rows": 1,
-                    "order": ["id ASC"],
-                    "page": 1
+                    'fields': ['id'],
+                    'rows': 1,
+                    'order': ['id ASC'],
+                    'page': 1
                 };
 
                 cin7.products.get(options).then((response) => {
-                    // parse the json encoded string into an object
-                    var data = JSON.parse(response.body);
+                    return response.json();
+                }).then((data) => {
                     rows = rows.concat(data);
 
-                    options.page ++;
+                    options.page++;
                     assert.isAbove(options.page, 1);
 
                     // Calls are limited to 1 per second, 60 per minute
@@ -88,8 +89,8 @@ describe("Cin7.products", function() {
                     sleep(1000);
                     return cin7.products.get(options);
                 }).then((response) => {
-                    // parse the json encoded string into an object
-                    var data = JSON.parse(response.body);
+                    return response.json();
+                }).then((data) => {
                     rows = rows.concat(data);
 
                     assert.isAbove(rows.length, 1);

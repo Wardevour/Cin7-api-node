@@ -1,19 +1,23 @@
 {
   "name": "cin7-api-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Test the cin7 api with Request",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "author": "kbrockert",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Wardevour/Cin7-api-node.git"
+  },
+  "license": "MIT",
   "dependencies": {
-    "request": "^2.88.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "dotenv": "^6.2.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.2.2"
   }
 }
