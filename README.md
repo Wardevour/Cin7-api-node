@@ -63,7 +63,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE)
 ## Acknowledgments
 
 * NodeJS
-* request
+* node-fetch
 * dotenv
 * mocha
 * chai
