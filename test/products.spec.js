@@ -86,7 +86,8 @@ describe('Cin7.products', function() {
                     // Calls are limited to 1 per second, 60 per minute
                     //   and 5000 per day. If you exceed this rate limit you
                     //   will receive a HTTP 429 (Too Many Requests) response.
-                    sleep(1000);
+                    return sleep(1000);
+                }).then(() => {
                     return cin7.products.get(options);
                 }).then((response) => {
                     return response.json();
