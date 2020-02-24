@@ -24,7 +24,7 @@ Then, clone this repository with git. The following examples use a bash
   and command line interfaces.
 
 ```bash
-git clone git@github.com:Wardevour/api-tests.git
+git clone git@github.com:Wardevour/Cin7-api-node.git
 ```
 
 Next, you'll want to install the required dependencies. Run the `npm install`
