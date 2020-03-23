@@ -8,21 +8,21 @@ const Cin7 = require('../index');
 
 let cin7 = null;
 
-describe('Cin7.products', function() {
+describe('Cin7.voucher', function() {
     before(function() {
         cin7 = new Cin7();
     });
 
     describe('#get()', function() {
         context('when using default options', function() {
-            it('should create output/products.json', function(done) {
+            it('should create output/voucher.json', function(done) {
                 this.timeout(5000);
 
-                cin7.products.get().then((response) => {
+                cin7.voucher.get().then((response) => {
                     return response.text();
                 }).then((text) => {
                   // make a file system agnostic file name
-                  let fileName = 'output' + path.sep + 'products.json';
+                  let fileName = 'output' + path.sep + 'voucher.json';
 
                   // this throws an error if the path doesn't exist
                   //   or the file couldn't be created
@@ -32,10 +32,10 @@ describe('Cin7.products', function() {
                 }).catch(done);
             });
 
-            it('should create output/products.csv', function(done) {
+            it('should create output/voucher.csv', function(done) {
                 this.timeout(5000);
 
-                cin7.products.get().then((response) => {
+                cin7.voucher.get().then((response) => {
                     return response.json();
                 }).then((data) => {
                     let rows = [];
@@ -44,7 +44,7 @@ describe('Cin7.products', function() {
                     for (let i = 1; i < data.length; i++) {
                         let values = Object.values(data[i]);
 
-                        // wrap values in single quotes
+                        // wrap values in single voucher
                         values = values.map((val) => {
                             return "'" + val + "'";
                         });
@@ -53,7 +53,7 @@ describe('Cin7.products', function() {
                     }
 
                     // write the csv file
-                    let fileName = 'output' + path.sep + 'products.csv';
+                    let fileName = 'output' + path.sep + 'voucher.csv';
                     fs.writeFileSync(fileName, rows.join('\n'), 'utf-8');
 
                     done();
@@ -74,7 +74,7 @@ describe('Cin7.products', function() {
                     'page': 1
                 };
 
-                cin7.products.get(options).then((response) => {
+                cin7.voucher.get(options).then((response) => {
                     return response.json();
                 }).then((data) => {
                     rows = rows.concat(data);
@@ -85,7 +85,7 @@ describe('Cin7.products', function() {
                     return sleep(1000);
                 }).then(() => {
                     options.page++;
-                    return cin7.products.get(options);
+                    return cin7.voucher.get(options);
                 }).then((response) => {
                     return response.json();
                 }).then((data) => {
