@@ -19,8 +19,8 @@ const fetch = function fetch() {
         return cin7.products.get(options).then((response) => {
             return response.json();
         }).then((data) => {
-            rows = rows.concat(data.results);
-            if (data.results.length >= 50) {
+            rows = rows.concat(data);
+            if (data.length >= 50) {
                 options.page++;
                 // Calls are limited to 1 per second, 60 per minute
                 //   and 5000 per day. If you exceed this rate limit you
