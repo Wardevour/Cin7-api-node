@@ -13,11 +13,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
-    "mocha": "^7.1.1"
+    "mocha": "^7.2.0"
   }
 }
