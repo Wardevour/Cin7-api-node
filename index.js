@@ -6,7 +6,7 @@ if (process.env.NODE_ENV != 'production') {
 }
 
 // format the api key to base64
-const CIN7_API_KEY = Buffer.from(process.env.CIN7_API_KEY).toString('base64');
+const CIN7_API_KEY = Buffer.from(process.env.CIN7_API_KEY || '').toString('base64');
 const CIN7_BASE_URL = 'https://api.cin7.com/api/v1/';
 const Adjustments = require('./lib/classes/adjustments');
 const BomMasters = require('./lib/classes/bom-masters');

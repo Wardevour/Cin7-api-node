@@ -9,15 +9,20 @@ const Cin7 = require('../index');
 let cin7 = null;
 
 describe('Cin7.payments', function() {
+    this.timeout(5000);
+
     before(function() {
         cin7 = new Cin7();
+    });
+
+    beforeEach(async function() {
+        // wait between tests to avoid a HTTP 429 response
+        await sleep(1000);
     });
 
     describe('#get()', function() {
         context('when using default options', function() {
             it('should create output/payments.json', function(done) {
-                this.timeout(5000);
-
                 cin7.payments.get().then((response) => {
                     return response.text();
                 }).then((text) => {
@@ -33,8 +38,6 @@ describe('Cin7.payments', function() {
             });
 
             it('should create output/payments.csv', function(done) {
-                this.timeout(5000);
-
                 cin7.payments.get().then((response) => {
                     return response.json();
                 }).then((data) => {
@@ -63,8 +66,6 @@ describe('Cin7.payments', function() {
 
         context('when using page options', function() {
             it('should get two pages and concat them', function(done) {
-                this.timeout(6000);
-
                 let rows = [];
 
                 let options = {

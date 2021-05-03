@@ -9,8 +9,15 @@ const Cin7 = require('../index');
 let cin7 = null;
 
 describe('Cin7.voucher', function() {
+    this.timeout(5000);
+
     before(function() {
         cin7 = new Cin7();
+    });
+
+    beforeEach(async function() {
+        // wait between tests to avoid a HTTP 429 response
+        await sleep(1000);
     });
 
     describe('#get()', function() {
